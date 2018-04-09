@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage,NavController } from 'ionic-angular';
-import {Camera, CameraOptions} from "@ionic-native/camera";
+import { Camera, CameraOptions } from "@ionic-native/camera";
+import { PortfolioPage } from "../portfolio/portfolio";
+import { MenuController } from "ionic-angular";
 
 @IonicPage()
 @Component({
@@ -24,18 +26,25 @@ export class HomePage {
 	private base64Prefix: string = 'data:image/jpeg;base64,';
 	private blurFlag: boolean = false;
 
-	constructor(public navCtrl: NavController, private camera: Camera) {
-
+	constructor(public navCtrl: NavController, private camera: Camera, private menuCtrl: MenuController) {
+	  this.menuCtrl.enable(true);
 	}
 
-	like(no){
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
+  }
 
+	like(no){
 		if(this.liked1){
 			this.liked1 = false;
 		}else{
 			this.liked1 = true;
 		}
 	};
+
+  showPortfolio() {
+    this.navCtrl.push("PortfolioPage").then();
+  }
 
 	doRefresh(refresher) {
 	  this.blurFlag = true;
@@ -44,8 +53,6 @@ export class HomePage {
       this.blurFlag = false;
     }, 2000);
   };
-
-
 
 	takePhoto() {
 	  let options: CameraOptions = {

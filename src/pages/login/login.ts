@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, Loading, NavController, NavParams} from 'ionic-angular';
 import { LoadingController } from "ionic-angular";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -22,9 +23,9 @@ export class LoginPage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait....",
-      duration: 3000
+      duration: 1000
     });
-    loader.present();
+    loader.present().then();
   }
 
   ionViewDidLoad() {
@@ -32,7 +33,8 @@ export class LoginPage {
   }
 
   enterWebsite(){
-    this.navCtrl.setRoot('HomePage');
+    this.presentLoading();
+    this.navCtrl.setRoot(HomePage).then();
 
   }
 }

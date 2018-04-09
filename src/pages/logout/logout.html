@@ -1,0 +1,24 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+    <ion-title text-center>PicSell</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content text-center>
+  <img src="assets/imgs/logo.jpg" height="100px" style="margin-top: 10vh;">
+  <ion-list margin-top="20px;" inset>
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input type="text" value="CharlesAhn" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" value="12345678" readonly></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="enterBtn" transparent>
+    <button ion-button full medium color="dark" (click)="showLogoutConfirm()">Logout</button>
+    <button ion-button outline full medium color="dark" (click)="dismiss()">Close</button>
+  </div>
+</ion-content>
