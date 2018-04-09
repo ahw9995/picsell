@@ -4,8 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { IntroPage} from '../pages/intro/intro';
 
 
 @Component({
@@ -14,7 +12,7 @@ import { IntroPage} from '../pages/intro/intro';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'IntroPage';
+  rootPage: any = 'LoginPage';
 
   pages: Array<{title: string, component: any , icon : string}>;
 
@@ -27,7 +25,7 @@ export class MyApp {
       { title: 'Popular', component: 'PortfolioPage' , icon:'contacts'},
       { title: 'Subscribe', component: 'PortfolioPage' , icon:'image'},
       { title: 'Charge', component: 'LoginPage' , icon:'card'},
-      { title: 'Settings', component: 'ClickPage' , icon:'cog'}
+      { title: 'Settings', component: 'SettingsPage' , icon:'cog'}
     ];
 
   }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, Loading, NavController, NavParams} from 'ionic-angular';
+import { LoadingController } from "ionic-angular";
 
 /**
  * Generated class for the LoginPage page.
@@ -8,23 +9,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
- @IonicPage()
- @Component({
- 	selector: 'page-login',
- 	templateUrl: 'login.html',
- })
- export class LoginPage {
+@IonicPage()
+@Component({
+  selector: 'page-login',
+  templateUrl: 'login.html',
+})
+export class LoginPage {
 
- 	constructor(public navCtrl: NavController, public navParams: NavParams) {
- 	}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController) {
+  }
 
- 	ionViewDidLoad() {
- 		console.log('ionViewDidLoad LoginPage');
- 	}
- 	enterWebsite(){
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait....",
+      duration: 3000
+    });
+    loader.present();
+  }
 
- 		this.navCtrl.setRoot('HomePage');
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage');
+  }
 
- 		
- 	}
- }
+  enterWebsite(){
+    this.navCtrl.setRoot('HomePage');
+
+  }
+}

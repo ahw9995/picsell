@@ -21,17 +21,11 @@ export class HomePage {
 	];
 
 	public photos: any;
-	private urlPreFix: string = 'file://';
 	private base64Prefix: string = 'data:image/jpeg;base64,';
-	private sendImage: string;
-	private imageblob: any;
+	private blurFlag: boolean = false;
 
 	constructor(public navCtrl: NavController, private camera: Camera) {
 
-	}
-
-	enterWebsite(){
-		this.navCtrl.push('HomePage');
 	}
 
 	like(no){
@@ -41,14 +35,19 @@ export class HomePage {
 		}else{
 			this.liked1 = true;
 		}
-	}
+	};
 
-	showPortfolio(){
-		this.navCtrl.push('PortfolioPage');
-	}
+	doRefresh(refresher) {
+	  this.blurFlag = true;
+	  setTimeout(() => {
+	    refresher.complete();
+      this.blurFlag = false;
+    }, 2000);
+  };
+
+
 
 	takePhoto() {
-	  console.log("take a photo");
 	  let options: CameraOptions = {
 	    quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
