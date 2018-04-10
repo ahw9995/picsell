@@ -38,15 +38,12 @@ export class LogoutPage {
         {
           text: 'Agree',
           handler: () => {
-
-            this.appCtrl.getRootNav().push(LoginPage);
+            this.dismiss();
+            this.appCtrl.getRootNav().setRoot(LoginPage).then();
           }
         }
       ]
     });
-    confirm.present().then( () => {
-        this.dismiss();
-      }
-    );
+    confirm.present().then();
   }
 }

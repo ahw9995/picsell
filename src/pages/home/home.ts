@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController } from 'ionic-angular';
+import {IonicPage, ModalController, NavController} from 'ionic-angular';
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { PortfolioPage } from "../portfolio/portfolio";
-import { MenuController } from "ionic-angular";
+import {UploadPage} from "../upload/upload";
 
 @IonicPage()
 @Component({
@@ -10,7 +10,7 @@ import { MenuController } from "ionic-angular";
 	templateUrl: 'home.html'
 })
 export class HomePage {
-	public liked1:boolean=false;
+
 	public list:any= [
 	{value: 'assets/imgs/File1.webp', liked: false},
 	{value: 'assets/imgs/File2.webp',liked: false},
@@ -23,24 +23,13 @@ export class HomePage {
 	];
 
 	public photos: any;
+	public imgUrl: string;
 	private base64Prefix: string = 'data:image/jpeg;base64,';
 	private blurFlag: boolean = false;
 
-	constructor(public navCtrl: NavController, private camera: Camera, private menuCtrl: MenuController) {
-	  this.menuCtrl.enable(true);
+	constructor(public navCtrl: NavController, private camera: Camera,
+              private modalCtrl: ModalController) {
 	}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-
-	like(no){
-		if(this.liked1){
-			this.liked1 = false;
-		}else{
-			this.liked1 = true;
-		}
-	};
 
   showPortfolio() {
     this.navCtrl.push("PortfolioPage").then();
@@ -52,22 +41,28 @@ export class HomePage {
 	    refresher.complete();
       this.blurFlag = false;
     }, 2000);
-  };
+  }
 
 	takePhoto() {
 	  let options: CameraOptions = {
 	    quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum: true
     };
 
 	  this.camera.getPicture(options).then(
       (imageData) => {
-        let safeUrl: any = this.base64Prefix + imageData;
-        this.photos.push(safeUrl);
-        this.photos.reverse();
+        // let safeUrl: any = this.base64Prefix + imageData;
+        this.imgUrl = this.base64Prefix + imageData;
+        this.openPictureModal();
       }, err => {console.log(err);}
-    )
-  };
+    ).catch(error => {console.log(error)});
+  }
+
+  openPictureModal() {
+	  let modal = this.modalCtrl.create(UploadPage, {"imgUrl": this.imgUrl});
+	  modal.present().then().catch(error => {console.log(error)});
+  }
 }

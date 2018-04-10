@@ -14,6 +14,7 @@ import {LoginPage} from "../pages/login/login";
 import {LoginPageModule} from "../pages/login/login.module";
 import {LogoutPageModule} from "../pages/logout/logout.module";
 import {HomePageModule} from "../pages/home/home.module";
+import {UploadPageModule} from "../pages/upload/upload.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HomePageModule} from "../pages/home/home.module";
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     LogoutPageModule,
-    HomePageModule
+    HomePageModule,
+    UploadPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
