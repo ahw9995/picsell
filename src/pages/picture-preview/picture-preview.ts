@@ -45,7 +45,7 @@ export class PicturePreviewPage {
       tapPhoto: false,
       previewDrag: false,
       disableExifHeaderStripping: false,
-      toBack: false,
+      toBack: true,
       alpha: 1
     };
 

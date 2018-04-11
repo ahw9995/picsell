@@ -1,5 +1,10 @@
 page-picture-preview {
-  html, body, .ion-app, .ion-content {
-    background-color: transparent;
+  .content-md {
+    background-color: transparent !important;
+    opacity: 0.5;
   }
+}
+
+ion-app.md {
+  background-color: transparent !important;
 }
