@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {IonicPage, ModalController, NavController} from 'ionic-angular';
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { PortfolioPage } from "../portfolio/portfolio";
-import {UploadPage} from "../upload/upload";
+import { UploadPage } from "../upload/upload";
+import {PicturePreviewPage} from "../picture-preview/picture-preview";
 
 @IonicPage()
 @Component({
@@ -33,7 +34,7 @@ export class HomePage {
 
   showPortfolio() {
     this.navCtrl.push("PortfolioPage").then();
-  }
+  };
 
 	doRefresh(refresher) {
 	  this.blurFlag = true;
@@ -41,15 +42,15 @@ export class HomePage {
 	    refresher.complete();
       this.blurFlag = false;
     }, 2000);
-  }
+  };
 
 	takePhoto() {
-	  let options: CameraOptions = {
-	    quality: 50,
+	  const options: CameraOptions = {
+	    quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum: true,
     };
 
 	  this.camera.getPicture(options).then(
@@ -59,10 +60,14 @@ export class HomePage {
         this.openPictureModal();
       }, err => {console.log(err);}
     ).catch(error => {console.log(error)});
-  }
+  };
 
   openPictureModal() {
 	  let modal = this.modalCtrl.create(UploadPage, {"imgUrl": this.imgUrl});
 	  modal.present().then().catch(error => {console.log(error)});
+  };
+
+  goPreviewPhoto() {
+    this.navCtrl.push(PicturePreviewPage);
   }
 }
