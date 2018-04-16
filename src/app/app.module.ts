@@ -17,6 +17,7 @@ import {LogoutPageModule} from "../pages/logout/logout.module";
 import {HomePageModule} from "../pages/home/home.module";
 import {UploadPageModule} from "../pages/upload/upload.module";
 import {PicturePreviewPageModule} from "../pages/picture-preview/picture-preview.module";
+import {Flashlight} from "@ionic-native/flashlight";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {PicturePreviewPageModule} from "../pages/picture-preview/picture-preview
     NativeStorage,
     Camera,
     CameraPreview,
+    Flashlight,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
