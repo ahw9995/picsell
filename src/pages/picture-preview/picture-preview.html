@@ -15,7 +15,7 @@
 
 <ion-content padding #img>
   <ion-fab right top small>
-    <button ion-fab [ngClass]="turnFlash ? 'flash-color-dark': 'flash-color-light'" (click)="switchCamera()" style="margin-bottom: 10px;"><ion-icon name="reverse-camera"></ion-icon></button>
+    <button ion-fab color="light" (click)="switchCamera()" style="margin-bottom: 10px;"><ion-icon name="reverse-camera"></ion-icon></button>
     <button ion-fab [ngClass]="turnFlash ? 'flash-color-dark': 'flash-color-light'" (click)="turnFlashLight()"><ion-icon name="flash"></ion-icon></button>
   </ion-fab>
   <ion-fab right bottom small>

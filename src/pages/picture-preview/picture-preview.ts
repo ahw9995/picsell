@@ -20,6 +20,7 @@ export class PicturePreviewPage {
   @ViewChild(Navbar) navBar: Navbar;
   @ViewChild('img') element;
   private gesture: Gesture;
+  private
   private turnFlash: boolean = false;
 
   constructor(private navCtrl: NavController, private cameraPreview: CameraPreview,
