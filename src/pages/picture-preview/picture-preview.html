@@ -1,30 +1,29 @@
-<!--
-  Generated template for the PicturePreviewPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Preview</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding #img>
-  <ion-fab right top small>
-    <button ion-fab color="light" (click)="switchCamera()" style="margin-bottom: 10px;"><ion-icon name="reverse-camera"></ion-icon></button>
-    <button ion-fab [ngClass]="turnFlash ? 'flash-color-dark': 'flash-color-light'" (click)="turnFlashLight()"><ion-icon name="flash"></ion-icon></button>
-  </ion-fab>
-  <ion-fab right bottom small>
-    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab (click)="changeColorEffect('none')">Basic</button>
-      <button ion-fab (click)="changeColorEffect('mono')">Mono</button>
-      <button ion-fab (click)="changeColorEffect('negative')">Negative</button>
-      <button ion-fab (click)="changeColorEffect('sepia')">Sepia</button>
-    </ion-fab-list>
-  </ion-fab>
+<ion-content padding>
+  <div #img>
+    <ion-fab right top small>
+      <button ion-fab [ngClass]="cameraChange ? 'flash-color-dark' : 'flash-color-light'" (click)="switchCamera()" style="margin-bottom: 10px;"><ion-icon name="reverse-camera"></ion-icon></button>
+      <button ion-fab [ngClass]="turnFlash ? 'flash-color-dark': 'flash-color-light'" (click)="turnFlashLight()"><ion-icon name="flash"></ion-icon></button>
+    </ion-fab>
+    <ion-fab right bottom small>
+      <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab (click)="changeColorEffect('none')">Basic</button>
+        <button ion-fab (click)="changeColorEffect('mono')">Mono</button>
+        <button ion-fab (click)="changeColorEffect('negative')">Negative</button>
+        <button ion-fab (click)="changeColorEffect('sepia')">Sepia</button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
 </ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <button ion-button full (click)="takePicture()">Photo</button>
+  </ion-toolbar>
+</ion-footer>

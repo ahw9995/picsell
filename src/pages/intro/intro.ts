@@ -18,12 +18,8 @@ export class IntroPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad IntroPage');
+  enterWebsite(){
+    this.navCtrl.setRoot('HomePage').then().catch();
+    //this.navCtrl.push('HomePage');
   }
-
-enterWebsite(){
-	this.navCtrl.setRoot('HomePage');
-		//this.navCtrl.push('HomePage');
-	}
 }

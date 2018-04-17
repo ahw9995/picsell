@@ -14,12 +14,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'subscribe.html',
 })
 export class SubscribePage {
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SubscribePage');
-  }
-
 }

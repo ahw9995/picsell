@@ -17,9 +17,4 @@ export class ChargePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChargePage');
-  }
-
 }

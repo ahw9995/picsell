@@ -21,9 +21,4 @@ export class UploadPage {
     this.imgUrl = this.navParams.get("imgUrl");
     console.log("nav params ======> " + this.navParams.get("imgUrl"));
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UploadPage');
-  }
-
 }

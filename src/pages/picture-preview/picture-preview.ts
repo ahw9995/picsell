@@ -1,8 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, Platform, Gesture} from 'ionic-angular';
-import { CameraPreview, CameraPreviewOptions} from '@ionic-native/camera-preview';
+import {IonicPage, NavController, Platform, Gesture, ModalController} from 'ionic-angular';
+import {CameraPreview, CameraPreviewOptions, CameraPreviewPictureOptions} from '@ionic-native/camera-preview';
 import { Navbar } from "ionic-angular";
 import { Flashlight } from "@ionic-native/flashlight";
+import {UploadPage} from "../upload/upload";
 
 /**
  * Generated class for the PicturePreviewPage page.
@@ -20,11 +21,11 @@ export class PicturePreviewPage {
   @ViewChild(Navbar) navBar: Navbar;
   @ViewChild('img') element;
   private gesture: Gesture;
-  private
+  private cameraChange: boolean = false;
   private turnFlash: boolean = false;
 
   constructor(private navCtrl: NavController, private cameraPreview: CameraPreview,
-              private platform: Platform, private flashLight: Flashlight) {
+              private platform: Platform, private flashLight: Flashlight, private modalCtrl: ModalController) {
     this.startCamera();
     this.platform.registerBackButtonAction(() => {
       this.stopCamera();
@@ -52,17 +53,19 @@ export class PicturePreviewPage {
   startCamera() {
     const cameraPreviewOptions: CameraPreviewOptions = {
       x: 0,
-      y: window.screen.height - window.innerHeight - 9,
+      y: window.screen.height - window.innerHeight - 8.5,
       width: window.screen.width,
-      height: window.screen.height / 1.7,
+      height: window.screen.height,
       camera: "BACK",
       tapPhoto: false,
+      tapToFocus: true,
       previewDrag: false,
-      disableExifHeaderStripping: false,
+      disableExifHeaderStripping: true,
       toBack: true,
       alpha: 1
     };
 
+    this.cameraPreview.setFocusMode(this.cameraPreview.FOCUS_MODE.INFINITY).then(data => console.log(data)).catch(error => console.log(error));
     this.cameraPreview.startCamera(cameraPreviewOptions).then((res) => console.log(res));
   };
 
@@ -78,7 +81,8 @@ export class PicturePreviewPage {
    * 카메라 변경(앞, 뒤)
    */
   switchCamera() {
-    this.cameraPreview.switchCamera();
+    this.cameraChange = this.cameraChange ? !this.cameraChange : this.cameraChange;
+    this.cameraPreview.switchCamera().then().catch(error => console.log(error));
   }
 
   /**
@@ -86,22 +90,37 @@ export class PicturePreviewPage {
    * @param effect
    */
   changeColorEffect(effect) {
-    this.cameraPreview.setColorEffect(effect);
+    this.cameraPreview.setColorEffect(effect).then(res => console.log(res)).catch(error => console.log(error));
   }
 
   /**
    * 카메라 flash turn on/off
    */
   turnFlashLight() {
+    this.turnFlash = this.turnFlash ? !this.turnFlash : this.turnFlash;
     if (this.flashLight.isSwitchedOn()) {
       // turn off
       this.flashLight.switchOff().then().catch(error => console.log(error));
-      this.turnFlash = false;
     } else {
       // turn on
       this.flashLight.switchOn().then().catch(error => console.log(error));
-      this.turnFlash = true;
     }
   }
+
+  takePicture() {
+    const cameraPreviewPictureOption: CameraPreviewPictureOptions = {
+      width: window.screen.width,
+      height: window.screen.height,
+      quality: 1
+    };
+    this.cameraPreview.takePicture(cameraPreviewPictureOption).then(imageData => {
+      this.openPictureModal('data:image/jpeg;base64,' + imageData);
+    }).catch(error => console.log(error));
+  }
+
+  openPictureModal(imgUrl) {
+    let modal = this.modalCtrl.create(UploadPage, {"imgUrl": imgUrl});
+    modal.present().then().catch(error => {console.log(error)});
+  };
 
 }
