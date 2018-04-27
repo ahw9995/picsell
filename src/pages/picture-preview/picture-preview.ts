@@ -113,7 +113,7 @@ export class PicturePreviewPage {
       height: window.screen.height,
       quality: 1
     };
-    this.cameraPreview.takePicture(cameraPreviewPictureOption).then(imageData => {
+    this.cameraPreview.takePicture().then(imageData => {
       this.openPictureModal('data:image/jpeg;base64,' + imageData);
     }).catch(error => console.log(error));
   }
