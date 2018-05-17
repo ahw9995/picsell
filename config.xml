@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="team.picsell.siriussoft" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="team.picsell" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PicSell</name>
     <description>Picsell</description>
-    <author email="404@siriussoft.net" href="http://siriussoft.net/">Team 404</author>
+    <author email="ahw9995@naver.com" href="">Team 404</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
