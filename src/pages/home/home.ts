@@ -42,4 +42,18 @@ export class HomePage {
   goPreviewPhoto() {
     this.navCtrl.push(PicturePreviewPage).then().catch(error => console.log(error));
   }
+
+	doInfinite(infiniteScroll) {
+		console.log('Begin async operation');
+
+		setTimeout(() => {
+			this.list.push({value: 'assets/imgs/File3.webp',liked: false});
+			this.list.push({value: 'assets/imgs/File4.webp',liked: false});
+			this.list.push({value: 'assets/imgs/File5.webp',liked: false});
+			this.list.push({value: 'assets/imgs/1.jpeg',liked: false});
+
+			console.log('Async operation has ended');
+			infiniteScroll.complete();
+		}, 1000);
+	}
 }
